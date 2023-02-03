@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HTTP } from '@awesome-cordova-plugins/http/ngx';
-import { resolve } from 'dns';
 import { environment } from '../../environments/environment';
 import { ICreateManualLog } from '../models/interfaces';
 
