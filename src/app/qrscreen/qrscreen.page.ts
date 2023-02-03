@@ -6,6 +6,8 @@ import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { ToastController } from '@ionic/angular';
+import { ICreateManualLog, IUser } from '../models/interfaces';
+import { utils } from '../utils/utils';
 
 @Component({
   selector: 'app-qrscreen',
@@ -52,7 +54,22 @@ export class QRscreenPage implements OnInit {
       const user = response['data'].length > 0 ? response['data'][0] : null;
       this.userService.cleanUser();
       if (user) {
-        this.userService.setUser({ firstName: user.first_name, lastName: user.last_name, code: user.emp_code });
+
+        let usr: IUser;
+        usr.idEmployee = user.id;
+        usr.firstName = user.first_name, 
+        usr.lastName = user.last_name, 
+        usr.code = user.emp_code;
+
+        this.userService.setUser(usr);
+
+        let mLog: ICreateManualLog;
+        mLog.employee = user.emp_code,
+        mLog.punch_time = utils.formatDate(new Date()),
+        mLog.punch_state = 0; // Check In
+
+        this.service.savePunch(mLog);
+
         //this.router.navigate(['/authorized-user']);
         this.presentUser(id);
       } else {
@@ -73,7 +90,22 @@ export class QRscreenPage implements OnInit {
       const user = response['data'].length > 0 ? response['data'][0] : null;
       this.userService.cleanUser();
       if (user) {
-        this.userService.setUser({ firstName: user.first_name, lastName: user.last_name, code: user.emp_code });
+        
+        let usr: IUser;
+        usr.idEmployee = user.id;
+        usr.firstName = user.first_name, 
+        usr.lastName = user.last_name, 
+        usr.code = user.emp_code;
+
+        this.userService.setUser(usr);
+
+        let mLog: ICreateManualLog;
+        mLog.employee = user.emp_code,
+        mLog.punch_time = utils.formatDate(new Date()),
+        mLog.punch_state = 0; // Check In
+
+        this.service.savePunch(mLog);
+        
         this.fastScan()
         this.presentUser(id);
       } else {

@@ -3,3 +3,10 @@ export interface ICreateManualLog {
     punch_state: number,
     employee: string
 }
+
+export interface IUser {
+    idEmployee: number,
+    firstName: string, 
+    lastName: string, 
+    code: number
+}
