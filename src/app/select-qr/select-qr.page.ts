@@ -13,26 +13,29 @@ export class SelectQRPage implements OnInit {
   ngOnInit() {
   }
 
-  normalScan() {
-    this.router.navigate(['/qrscreen']);
-    console.log("aqui va a la interfaz del QR");
+  checkIn() {
+    // # 0
+    localStorage.setItem("punch_state", "0");
+    this.router.navigate(['/qrscreen']);    
   }
   
-  scanInput() {
-    this.router.navigate(['/qrscreen']);
-    console.log("aqui va a la interfaz del QR");
+  checkOut() {
+    // # 1
+    localStorage.setItem("punch_state", "1");
+    this.router.navigate(['/qrscreen']);    
+  }
+    
+  breakOut() {
+    // # 2
+    localStorage.setItem("punch_state", "2");
+    this.router.navigate(['/qrscreen']);    
   }
   
-  scanOutput() {
-    this.router.navigate(['/qrscreen']);
-    console.log("aqui va a la interfaz del QR");
+  breakIn() {
+    // # 3
+    localStorage.setItem("punch_state", "3");
+    this.router.navigate(['/qrscreen']);    
   }
-  
-  scanAbsence() {
-    this.router.navigate(['/qrscreen']);
-    console.log("aqui va a la interfaz del QR");
-  }
-  
    
 }
 

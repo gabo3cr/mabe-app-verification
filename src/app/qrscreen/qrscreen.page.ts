@@ -49,6 +49,7 @@ export class QRscreenPage implements OnInit {
 
   async callGetUserById(id: string) {
     try {
+
       const response = await this.service.getUserInfo(id);
       console.log("Response get user", response);
       const user = response['data'].length > 0 ? response['data'][0] : null;
@@ -66,7 +67,7 @@ export class QRscreenPage implements OnInit {
         let mLog: ICreateManualLog;
         mLog.employee = user.emp_code,
         mLog.punch_time = utils.formatDate(new Date()),
-        mLog.punch_state = 0; // Check In
+        mLog.punch_state = Number.parseInt(localStorage.getItem("punch_state")); 
 
         this.service.savePunch(mLog);
 
@@ -102,7 +103,7 @@ export class QRscreenPage implements OnInit {
         let mLog: ICreateManualLog;
         mLog.employee = user.emp_code,
         mLog.punch_time = utils.formatDate(new Date()),
-        mLog.punch_state = 0; // Check In
+        mLog.punch_state = Number.parseInt(localStorage.getItem("punch_state")); 
 
         this.service.savePunch(mLog);
         
