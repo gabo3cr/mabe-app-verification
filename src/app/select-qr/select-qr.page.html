@@ -1,0 +1,27 @@
+<ion-toolbar color="dark">
+  <ion-title>Interfaz / QR</ion-title>
+</ion-toolbar>
+
+<ion-content>
+
+  <div class="logo">
+    <img class="img-logo-center" src="../../assets/images/mabe-logo-white.png" alt="">
+  </div>
+  <ion-card class="bg-white m-center-card">
+    <ion-card-header class="header-m">
+      <ion-card-title class="space-title">SELECCIONA UNA Opción</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="center">
+        <img class="qrImage" src="../../assets/images/select-button.svg" alt="">
+       </div>
+      <ion-button class="button-c" (click)="normalScan()">Escanear QR</ion-button>
+      <ion-button class="button-c" (click)="scanInput()">Escanear Entrada</ion-button>
+      <ion-button class="button-c" (click)="scanOutput()">Escanear Salida</ion-button>
+      <ion-button class="button-c" (click)="scanAbsence()">Escanear Ausencia</ion-button>
+  
+    </ion-card-content> 
+    <!--<div> <h3 class="second-text-c">Ultimo Usuario: <span class="black-span-c-found">{{user.code}}</span></h3></div>-->
+  </ion-card>
+
+</ion-content>
