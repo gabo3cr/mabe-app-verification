@@ -56,18 +56,11 @@ export class QRscreenPage implements OnInit {
       this.userService.cleanUser();
       if (user) {
 
-        let usr: IUser;
-        usr.idEmployee = user.id;
-        usr.firstName = user.first_name, 
-        usr.lastName = user.last_name, 
-        usr.code = user.emp_code;
+        const usr: IUser = { idEmployee: user.id, firstName: user.first_name, lastName: user.last_name, code: user.emp_code };        
 
         this.userService.setUser(usr);
 
-        let mLog: ICreateManualLog;
-        mLog.employee = user.emp_code,
-        mLog.punch_time = utils.formatDate(new Date()),
-        mLog.punch_state = Number.parseInt(localStorage.getItem("punch_state")); 
+        const mLog: ICreateManualLog = { employee: user.emp_code, punch_time: utils.formatDate(new Date()), punch_state: Number.parseInt(localStorage.getItem("punch_state")) };
 
         this.service.savePunch(mLog);
 
@@ -92,18 +85,11 @@ export class QRscreenPage implements OnInit {
       this.userService.cleanUser();
       if (user) {
         
-        let usr: IUser;
-        usr.idEmployee = user.id;
-        usr.firstName = user.first_name, 
-        usr.lastName = user.last_name, 
-        usr.code = user.emp_code;
+        const usr: IUser = { idEmployee: user.id, firstName: user.first_name, lastName: user.last_name, code: user.emp_code };        
 
         this.userService.setUser(usr);
 
-        let mLog: ICreateManualLog;
-        mLog.employee = user.emp_code,
-        mLog.punch_time = utils.formatDate(new Date()),
-        mLog.punch_state = Number.parseInt(localStorage.getItem("punch_state")); 
+        const mLog: ICreateManualLog = { employee: user.emp_code, punch_time: utils.formatDate(new Date()), punch_state: Number.parseInt(localStorage.getItem("punch_state")) };
 
         this.service.savePunch(mLog);
         
