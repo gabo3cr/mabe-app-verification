@@ -60,7 +60,7 @@ export class QRscreenPage implements OnInit {
 
         this.userService.setUser(usr);
 
-        const mLog: ICreateManualLog = { employee: user.emp_code, punch_time: utils.formatDate(new Date()), punch_state: Number.parseInt(localStorage.getItem("punch_state")) };
+        const mLog: ICreateManualLog = { employee: user.id, punch_time: utils.formatDate(new Date()), punch_state: Number.parseInt(localStorage.getItem("punch_state")) };
 
         this.service.savePunch(mLog);
 
@@ -89,7 +89,7 @@ export class QRscreenPage implements OnInit {
 
         this.userService.setUser(usr);
 
-        const mLog: ICreateManualLog = { employee: user.emp_code, punch_time: utils.formatDate(new Date()), punch_state: Number.parseInt(localStorage.getItem("punch_state")) };
+        const mLog: ICreateManualLog = { employee: user.id, punch_time: utils.formatDate(new Date()), punch_state: Number.parseInt(localStorage.getItem("punch_state")) };
 
         this.service.savePunch(mLog);
         
