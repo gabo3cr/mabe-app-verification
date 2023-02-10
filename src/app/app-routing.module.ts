@@ -35,9 +35,10 @@ const routes: Routes = [
   {
     path: 'qrscreen',
     loadChildren: () => import('./qrscreen/qrscreen.module').then( m => m.QRscreenPageModule), canActivate: [AuthGuard]
-  },  {
+  },
+  {
     path: 'select-qr',
-    loadChildren: () => import('./select-qr/select-qr.module').then( m => m.SelectQRPageModule)
+    loadChildren: () => import('./select-qr/select-qr.module').then( m => m.SelectQRPageModule), canActivate: [AuthGuard]
   }
 
 

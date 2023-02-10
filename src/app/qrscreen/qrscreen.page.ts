@@ -120,6 +120,10 @@ export class QRscreenPage implements OnInit {
 
   }
 
+  backButton(){
+    this.router.navigate(['/select-qr']);
+  }
+
   async presentToast(id: string) {
     const toast = await this.toastController.create({
       message: 'El usuario no se encuentra registrado en sistema.',
