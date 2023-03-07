@@ -49,24 +49,18 @@ export class QRscreenPage implements OnInit {
 
   async callGetUserById(id: string) {
     try {
+
       const response = await this.service.getUserInfo(id);
       console.log("Response get user", response);
       const user = response['data'].length > 0 ? response['data'][0] : null;
       this.userService.cleanUser();
       if (user) {
 
-        let usr: IUser;
-        usr.idEmployee = user.id;
-        usr.firstName = user.first_name, 
-        usr.lastName = user.last_name, 
-        usr.code = user.emp_code;
+        const usr: IUser = { idEmployee: user.id, firstName: user.first_name, lastName: user.last_name, code: user.emp_code };        
 
         this.userService.setUser(usr);
 
-        let mLog: ICreateManualLog;
-        mLog.employee = user.emp_code,
-        mLog.punch_time = utils.formatDate(new Date()),
-        mLog.punch_state = 0; // Check In
+        const mLog: ICreateManualLog = { employee: user.id, punch_time: utils.formatDate(new Date()), punch_state: Number.parseInt(localStorage.getItem("punch_state")) };
 
         this.service.savePunch(mLog);
 
@@ -91,18 +85,11 @@ export class QRscreenPage implements OnInit {
       this.userService.cleanUser();
       if (user) {
         
-        let usr: IUser;
-        usr.idEmployee = user.id;
-        usr.firstName = user.first_name, 
-        usr.lastName = user.last_name, 
-        usr.code = user.emp_code;
+        const usr: IUser = { idEmployee: user.id, firstName: user.first_name, lastName: user.last_name, code: user.emp_code };        
 
         this.userService.setUser(usr);
 
-        let mLog: ICreateManualLog;
-        mLog.employee = user.emp_code,
-        mLog.punch_time = utils.formatDate(new Date()),
-        mLog.punch_state = 0; // Check In
+        const mLog: ICreateManualLog = { employee: user.id, punch_time: utils.formatDate(new Date()), punch_state: Number.parseInt(localStorage.getItem("punch_state")) };
 
         this.service.savePunch(mLog);
         
@@ -117,6 +104,10 @@ export class QRscreenPage implements OnInit {
       console.log(err);
     }
 
+  }
+
+  backButton(){
+    this.router.navigate(['/select-qr']);
   }
 
   async presentToast(id: string) {

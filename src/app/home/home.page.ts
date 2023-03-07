@@ -42,7 +42,7 @@ export class HomePage {
       // guardar token en localstorage
       localStorage.setItem("token", response.token);
       //redirecionar pantalla QR
-      this.router.navigate(['/qrscreen']);
+      this.router.navigate(['/select-qr']);
     } catch (error) {
       //agregar un modal con el error
       console.error("Ocurrio error llamando servicio: ", error);

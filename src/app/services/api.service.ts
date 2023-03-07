@@ -11,15 +11,17 @@ export class ApiService {
   //url = 'http://181.167.206.232:8081'; // {"username": "admin", "password": "zkteco1234"}
   //url = 'http://10.1.80.203:443/';
   url = environment.apiUrl;
+  usrName = environment.username;
+  usrPwd = environment.password;
 
   constructor(private http: HTTP) { }
 
   getToken() {
-    
-  const headers= { "Content-Type": "application/json" }
+
+    const headers = { "Content-Type": "application/json" }
 
     return new Promise((resolve, reject) => {
-      this.http.post(this.url + '/api-token-auth/', {"username": "admin", "password": "Admin12345"}, headers)
+      this.http.post(this.url + '/api-token-auth/', { "username": this.usrName, "password": this.usrPwd }, headers)
         .then(response => {
           resolve(JSON.parse(response.data));
         }, (error) => {
@@ -29,7 +31,7 @@ export class ApiService {
   }
 
   getUserInfo(data: string) {
-    const headers = { "Content-Type": "application/json", "Authorization": `Token ${ localStorage.getItem('token') }` };
+    const headers = { "Content-Type": "application/json", "Authorization": `Token ${localStorage.getItem('token')}` };
     const dataHandle = data.split('|');
     console.log("Parseo informacion tarjeta", dataHandle);
     return new Promise((resolve, reject) => {
@@ -43,11 +45,11 @@ export class ApiService {
   }
 
   savePunch(manualLog: ICreateManualLog) {
-    const headers = { "Content-Type": "application/json", "Authorization": `Token ${ localStorage.getItem('token') }` };
+    const headers = { "Content-Type": "application/json", "Authorization": `Token ${localStorage.getItem('token')}` };
     return new Promise((resolve, reject) => {
       this.http.post(this.url + '/att/api/manuallogs/', manualLog, headers)
         .then(response => {
-          resolve(console.log(response)); 
+          resolve(console.log(response));
         }, (error) => {
           reject(error);
         });
