@@ -11,6 +11,7 @@ export class ApiService {
   //url = 'http://181.167.206.232:8081'; // {"username": "admin", "password": "zkteco1234"}
   //url = 'http://10.1.80.203:443/';
   url = environment.apiUrl;
+  urlApiSQL = environment.apiUrlSQL;
   usrName = environment.username;
   usrPwd = environment.password;
 
@@ -49,10 +50,31 @@ export class ApiService {
     return new Promise((resolve, reject) => {
       this.http.post(this.url + '/att/api/manuallogs/', manualLog, headers)
         .then(response => {
+          if(response.status == 201) {
+            const res = JSON.parse(response.data);
+            console.log(' RESPUESTA INSERCION ML: ', res);
+            const aML = this.approveML(res.id);
+            resolve(console.log('UPDATE SQL: ', aML));
+          }
+          else {
+            resolve(console.error('No se ha podido crear la marcación.'));
+          }
+
           resolve(console.log(response));
         }, (error) => {
           reject(error);
         });
+    });
+  }
+
+  approveML(manualLogId: number) {
+    const headers = { "Content-Type": "application/json", "Authorization": `Token ${localStorage.getItem('token')}` };
+    return new Promise((resolve, reject) => {
+      this.http.post(this.urlApiSQL + '/api/employees/approve-ml', { manualLogId }, headers)
+        .then(response => {
+          resolve(response);
+        },
+        (error) => reject(error));
     });
   }
 }
