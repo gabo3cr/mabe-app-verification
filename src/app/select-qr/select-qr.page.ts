@@ -37,5 +37,8 @@ export class SelectQRPage implements OnInit {
     this.router.navigate(['/qrscreen']);    
   }
    
+  backButton(){
+    this.router.navigate(['/select-qr']);
+  }
 }
 
