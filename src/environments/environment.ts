@@ -4,13 +4,13 @@
 
 export const environment = {
   production: false,
-  loginUrl: 'https://mabe.neo-branding.com/',
-  apiUrl: 'http://10.1.80.203:443', //'http://181.167.206.232:82' // http://181.167.206.232:8081
-  apiUrlSQL: 'http://10.1.80.203:5000',
-  username: 'app', 
-  password: 'app.2022'
-  //username: 'admin', 
-  //password: 'zkteco1234'
+  loginUrl: 'http://hlsolutions.com.mx/app/',
+  apiUrl: 'https://asistencia.mabe.mx/', //'http://181.167.206.232:8081' // http://10.1.80.203:443
+  apiUrlSQL: '10.1.80.203:443:5000',
+ // username: 'app', 
+  //password: 'app.2022'
+  username: 'Sysadmin', 
+  password: 'Admin123'
 };
 
 /*
